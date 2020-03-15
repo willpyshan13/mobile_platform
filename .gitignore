@@ -3,15 +3,9 @@
 .dart_tool/
 .packages
 /build/
-/android/
-/ios/
-/web/
 
 *.iml
 .metadata
 pubspec.lock
-
-.flutter-plugins
-.flutter-plugins-dependencies
 
 upload.bat
