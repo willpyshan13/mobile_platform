@@ -17,7 +17,7 @@ dependencies:
   font_awesome_flutter: ^8.5.0
   json_annotation: ^2.2.0
   bot_toast: ^2.2.1
-  flutter_colorpicker: any
+  flutter_colorpicker: ^0.2.5
   
 
 
