@@ -60,14 +60,16 @@ class Curd1State extends State {
       key: formKey,
       child: Wrap(
         children: <Widget>[
-          CryInput(
-            label: '人员姓名',
+          CrySelect(
+            label: '平台',
+            value: formData.deptId,
+            dataList: platformList,
             onSaved: (v) {
               formData.name = v;
             },
           ),
           CrySelect(
-            label: '所属部门',
+            label: '客户端',
             value: formData.deptId,
             dataList: deptIdList,
             onSaved: (v) {

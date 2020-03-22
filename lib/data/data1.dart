@@ -8,9 +8,14 @@ import 'package:flutter_admin/vo/pageVO.dart';
 import 'package:flutter_admin/vo/selectOptionVO.dart';
 
 List<SelectOptionVO> deptIdList = [
-  SelectOptionVO(value: '1', label: '技术部门'),
-  SelectOptionVO(value: '2', label: '产品部'),
-  SelectOptionVO(value: '3', label: '销售部'),
+  SelectOptionVO(value: 'Life', label: 'Life'),
+  SelectOptionVO(value: 'Rider', label: 'Rider'),
+  SelectOptionVO(value: 'Partner', label: 'Partner'),
+  SelectOptionVO(value: 'BdTools', label: 'BdTools'),
+];
+List<SelectOptionVO> platformList = [
+  SelectOptionVO(value: 'android', label: 'android'),
+  SelectOptionVO(value: 'ios', label: 'ios'),
 ];
 List<SelectOptionVO> genderList = [
   SelectOptionVO(value: '1', label: '男'),
@@ -18,22 +23,7 @@ List<SelectOptionVO> genderList = [
 ];
 
 List<PageVO> testPageVOAll = <PageVO>[
-  PageVO(id: "1", icon: Icons.dashboard, title: 'Dashboard', widget: Dashboard1()),
-  PageVO(id: "4", icon: Icons.people, title: '人员管理', widget: PersonList()),
-  PageVO(id: "2", icon: Icons.folder, title: '树结构一级菜单', children: [
-    PageVO(
-      title: '二级菜单',
-      icon: FontAwesomeIcons.tree,
-      children: [
-        PageVO(title: '三级菜单', icon: Icons.insert_drive_file),
-      ],
-    ),
-    PageVO(
-      title: '二级菜单',
-      icon: Icons.insert_photo,
-    )
-  ]),
-  PageVO(id: "5", icon: Icons.grade, title: '我的信息', widget: UserInfoEdit()),
+  PageVO(id: "4", icon: Icons.people, title: 'app管理', widget: PersonList()),
 ];
 
 List<ListTileVO> todoList = [

@@ -36,7 +36,7 @@ class LoginState extends State {
 
   Widget buildPageContent() {
     var appName = Text(
-      "FLUTTER_ADMIN",
+      "mobile platform",
       style: TextStyle(fontSize: 16, color: Colors.green),
       textScaleFactor: 3.2,
     );
