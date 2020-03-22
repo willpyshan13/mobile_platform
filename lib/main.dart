@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BotToastInit(
       child: MaterialApp(
-        title: 'FLUTTER_ADMIN',
+        title: 'mobile_platform',
         navigatorObservers: [BotToastNavigatorObserver()],
         theme: ThemeData(
           primarySwatch: Colors.blue,

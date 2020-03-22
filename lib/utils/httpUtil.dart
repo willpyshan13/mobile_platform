@@ -19,8 +19,8 @@ class HttpUtil {
   static Future<ResponeBodyApi> post(String url, {data, requestToken = true}) async {
     Map map = await request(url, data: data, requestToken: requestToken);
     if (map == null) {}
-    ResponeBodyApi responeBodyApi = ResponeBodyApi.fromJson(map);
-    return responeBodyApi;
+    ResponeBodyApi responseBodyApi = ResponeBodyApi.fromJson(map);
+    return responseBodyApi;
   }
 
   static Future<Map> request(String url, {data, method, requestToken = true}) async {

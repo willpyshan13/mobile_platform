@@ -158,7 +158,7 @@ class Curd1State extends State {
         padding: const EdgeInsets.all(10.0),
         children: <Widget>[
           PaginatedDataTable(
-            header: const Text('用户列表'),
+            header: const Text('应用列表'),
             rowsPerPage: rowsPerPage,
             onRowsPerPageChanged: (int value) {
               setState(() {
@@ -171,24 +171,16 @@ class Curd1State extends State {
             onPageChanged: myDS.onPageChanged,
             columns: <DataColumn>[
               DataColumn(
-                label: const Text('姓名'),
+                label: const Text('应用名'),
                 onSort: (int columnIndex, bool ascending) => myDS.sort('name', ascending),
               ),
               DataColumn(
-                label: const Text('呢称'),
+                label: const Text('渠道'),
                 onSort: (int columnIndex, bool ascending) => myDS.sort('nick_name', ascending),
               ),
               DataColumn(
-                label: const Text('性别'),
+                label: const Text('版本'),
                 onSort: (int columnIndex, bool ascending) => myDS.sort('gender', ascending),
-              ),
-              DataColumn(
-                label: const Text('出生年月'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('birthday', ascending),
-              ),
-              DataColumn(
-                label: const Text('部门'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('dept_id', ascending),
               ),
               DataColumn(
                 label: const Text('创建时间'),
@@ -239,8 +231,8 @@ class MyDS extends DataTableSource {
 
   loadData() async {
     requestBodyApi.page = page;
-    ResponeBodyApi responeBodyApi = await PersonApi.page(requestBodyApi);
-    page = Page.fromJson(responeBodyApi.data);
+    ResponeBodyApi responseBodyApi = await PersonApi.page(requestBodyApi);
+    page = Page.fromJson(responseBodyApi.data);
 
     dataList = page.records.map<Person>((v) {
       Person person = Person.fromJson(v);
