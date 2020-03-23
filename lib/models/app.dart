@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'person.g.dart';
+part 'app.g.dart';
 
 @JsonSerializable()
-class Person {
-    Person();
+class App {
+    App();
 
     bool selected;
     String id;
@@ -26,6 +26,6 @@ class Person {
     String createTime;
     String updateTime;
     
-    factory Person.fromJson(Map<String,dynamic> json) => _$PersonFromJson(json);
+    factory App.fromJson(Map<String,dynamic> json) => _$PersonFromJson(json);
     Map<String, dynamic> toJson() => _$PersonToJson(this);
 }

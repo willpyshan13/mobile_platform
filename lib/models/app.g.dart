@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'person.dart';
+part of 'app.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Person _$PersonFromJson(Map<String, dynamic> json) {
-  return Person()
+App _$PersonFromJson(Map<String, dynamic> json) {
+  return App()
     ..selected = json['selected'] as bool
     ..id = json['id'] as String
     ..userId = json['userId'] as String
@@ -29,7 +29,7 @@ Person _$PersonFromJson(Map<String, dynamic> json) {
     ..updateTime = json['updateTime'] as String;
 }
 
-Map<String, dynamic> _$PersonToJson(Person instance) => <String, dynamic>{
+Map<String, dynamic> _$PersonToJson(App instance) => <String, dynamic>{
       'selected': instance.selected,
       'id': instance.id,
       'userId': instance.userId,

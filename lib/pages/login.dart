@@ -7,7 +7,7 @@ import 'package:flutter_admin/api/userApi.dart';
 import 'package:flutter_admin/models/user.dart';
 import 'package:flutter_admin/utils/globalUtil.dart';
 
-import 'layout/layout1.dart';
+import 'layout/appListLayout.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -189,7 +189,7 @@ class LoginState extends State {
     UserApi.login(user.toJson()).then((ResponeBodyApi responeBodyApi) {
       if (responeBodyApi.success) {
         GlobalUtil.token = responeBodyApi.data;
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Layout1()));
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AppListLayout()));
       } else {
         this.error = responeBodyApi.message;
         BotToast.showText(text: this.error);

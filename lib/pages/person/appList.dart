@@ -7,14 +7,14 @@ import 'package:flutter_admin/components/form1/cryInput.dart';
 import 'package:flutter_admin/components/form1/crySelect.dart';
 import 'package:flutter_admin/data/data1.dart';
 import 'package:flutter_admin/models/index.dart';
-import 'package:flutter_admin/models/person.dart';
+import 'package:flutter_admin/models/app.dart';
 import 'package:flutter_admin/models/requestBodyApi.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
 import 'package:flutter_admin/utils/dictUtil.dart';
 
 import 'personEdit.dart';
 
-class PersonList extends StatefulWidget {
+class AppList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return Curd1State();
@@ -25,10 +25,10 @@ class Curd1State extends State {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   int rowsPerPage = 10;
   MyDS myDS = new MyDS();
-  Person formData = Person();
+  App formData = App();
 
   reset() {
-    this.formData = Person();
+    this.formData = App();
     formKey.currentState.reset();
     myDS.requestBodyApi.params = formData.toJson();
     myDS.loadData();
@@ -118,7 +118,7 @@ class Curd1State extends State {
                   if (myDS.selectedRowCount != 1) {
                     return;
                   }
-                  Person person = myDS.dataList.firstWhere((v) {
+                  App person = myDS.dataList.firstWhere((v) {
                     return v.selected;
                   });
                   cryDialog(
@@ -171,16 +171,24 @@ class Curd1State extends State {
             onPageChanged: myDS.onPageChanged,
             columns: <DataColumn>[
               DataColumn(
-                label: const Text('应用名'),
+                label: const Text('姓名'),
                 onSort: (int columnIndex, bool ascending) => myDS.sort('name', ascending),
               ),
               DataColumn(
-                label: const Text('渠道'),
+                label: const Text('呢称'),
                 onSort: (int columnIndex, bool ascending) => myDS.sort('nick_name', ascending),
               ),
               DataColumn(
-                label: const Text('版本'),
+                label: const Text('性别'),
                 onSort: (int columnIndex, bool ascending) => myDS.sort('gender', ascending),
+              ),
+              DataColumn(
+                label: const Text('出生年月'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('birthday', ascending),
+              ),
+              DataColumn(
+                label: const Text('部门'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('dept_id', ascending),
               ),
               DataColumn(
                 label: const Text('创建时间'),
@@ -219,7 +227,7 @@ class Curd1State extends State {
 class MyDS extends DataTableSource {
   MyDS();
   BuildContext context;
-  List<Person> dataList;
+  List<App> dataList;
   int selectedCount = 0;
   RequestBodyApi requestBodyApi = RequestBodyApi();
   Page page = Page();
@@ -234,8 +242,8 @@ class MyDS extends DataTableSource {
     ResponeBodyApi responseBodyApi = await PersonApi.page(requestBodyApi);
     page = Page.fromJson(responseBodyApi.data);
 
-    dataList = page.records.map<Person>((v) {
-      Person person = Person.fromJson(v);
+    dataList = page.records.map<App>((v) {
+      App person = App.fromJson(v);
       person.selected = false;
       return person;
     }).toList();
@@ -255,7 +263,7 @@ class MyDS extends DataTableSource {
     if (dataIndex >= dataList.length) {
       return null;
     }
-    Person person = dataList[dataIndex];
+    App person = dataList[dataIndex];
 
     return DataRow.byIndex(
       index: index,

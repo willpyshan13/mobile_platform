@@ -5,12 +5,12 @@ import 'package:flutter_admin/utils/globalUtil.dart';
 import 'package:flutter_admin/vo/pageVO.dart';
 import 'package:flutter_colorpicker/block_picker.dart';
 
-class Layout1 extends StatefulWidget {
+class AppListLayout extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => Layout1State();
+  State<StatefulWidget> createState() => AppListLayoutState();
 }
 
-class Layout1State extends State with TickerProviderStateMixin {
+class AppListLayoutState extends State with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldStateKey = GlobalKey<ScaffoldState>();
   List<PageVO> pageVoAll;
   List<PageVO> pageVoOpened;

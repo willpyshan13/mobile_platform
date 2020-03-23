@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_admin/pages/layout/layout1.dart';
+import 'package:flutter_admin/pages/layout/appListLayout.dart';
 import 'package:flutter_admin/pages/login.dart';
-import 'package:flutter_admin/pages/person/personList.dart';
+import 'package:flutter_admin/pages/person/appList.dart';
 import 'package:flutter_admin/pages/userInfo/userInfoEdit.dart';
 
 void main() => runApp(MyApp());

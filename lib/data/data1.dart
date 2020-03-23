@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/pages/person/personList.dart';
+import 'package:flutter_admin/pages/person/appList.dart';
 import 'package:flutter_admin/pages/userInfo/userInfoEdit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_admin/pages/dash/dashboard1.dart';
@@ -8,14 +8,14 @@ import 'package:flutter_admin/vo/pageVO.dart';
 import 'package:flutter_admin/vo/selectOptionVO.dart';
 
 List<SelectOptionVO> deptIdList = [
-  SelectOptionVO(value: 'Life', label: 'Life'),
-  SelectOptionVO(value: 'Rider', label: 'Rider'),
-  SelectOptionVO(value: 'Partner', label: 'Partner'),
-  SelectOptionVO(value: 'BdTools', label: 'BdTools'),
+  SelectOptionVO(value: '1', label: 'Life'),
+  SelectOptionVO(value: '2', label: 'Rider'),
+  SelectOptionVO(value: '3', label: 'Partner'),
+  SelectOptionVO(value: '4', label: 'BdTools'),
 ];
 List<SelectOptionVO> platformList = [
-  SelectOptionVO(value: 'android', label: 'android'),
-  SelectOptionVO(value: 'ios', label: 'ios'),
+  SelectOptionVO(value: '1', label: 'android'),
+  SelectOptionVO(value: '2', label: 'ios'),
 ];
 List<SelectOptionVO> genderList = [
   SelectOptionVO(value: '1', label: '男'),
@@ -23,13 +23,14 @@ List<SelectOptionVO> genderList = [
 ];
 
 List<PageVO> testPageVOAll = <PageVO>[
-  PageVO(id: "4", icon: Icons.people, title: 'app管理', widget: PersonList()),
+  PageVO(id: "4", icon: Icons.people, title: 'app管理', widget: AppList()),
 ];
 
 List<ListTileVO> todoList = [
   ListTileVO(title: '江西：清理“影子药师” 整治“挂证”乱象', trailing: '2020-01-11'),
   ListTileVO(title: '刘鹤会见国际科技合作奖获奖外国专家', trailing: '2020-01-11'),
-  ListTileVO(title: '刘鹤在京检查2020年春运工作时强调：全面小康之年，让回家的路更温馨、更安全', trailing: '2020-01-11'),
+  ListTileVO(
+      title: '刘鹤在京检查2020年春运工作时强调：全面小康之年，让回家的路更温馨、更安全', trailing: '2020-01-11'),
   ListTileVO(title: '怀报国之志，勇攀创新高峰——国家科技奖励大会引发热烈反响', trailing: '2020-01-11'),
   ListTileVO(title: '宁夏回族自治区党委国家安全委员会办公室原副主任于霆被“双开”', trailing: '2020-01-11'),
   ListTileVO(title: '“冷板凳”拼出“热产业” 上海张江迈向科创策源高地', trailing: '2020-01-11'),

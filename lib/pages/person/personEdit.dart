@@ -7,7 +7,7 @@ import 'package:flutter_admin/components/form1/cryInput.dart';
 import 'package:flutter_admin/components/form1/crySelect.dart';
 import 'package:flutter_admin/components/form1/crySelectDate.dart';
 import 'package:flutter_admin/data/data1.dart';
-import 'package:flutter_admin/models/person.dart';
+import 'package:flutter_admin/models/app.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
 
 class EditPage extends StatefulWidget {
@@ -21,13 +21,13 @@ class EditPage extends StatefulWidget {
 
 class EditPageState extends State<EditPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Person formData = Person();
+  App formData = App();
   @override
   void initState() {
     super.initState();
     if (widget.id != null) {
       PersonApi.getById({'id': widget.id}).then((ResponeBodyApi res) {
-        formData = Person.fromJson(res.data);
+        formData = App.fromJson(res.data);
         setState(() {});
       });
     }
