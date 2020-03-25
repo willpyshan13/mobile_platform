@@ -10,7 +10,7 @@ class HttpUtil {
   static Dio dio;
 
   // static const String API_PREFIX = 'http://localhost:9094/';
-  static const String API_PREFIX = 'https://www.javascriptvue.com/api/p4/';
+  static const String API_PREFIX = 'http://192.168.1.7:8081/renren-api/';
   static const int CONNECT_TIMEOUT = 10000;
   static const int RECEIVE_TIMEOUT = 3000;
 
@@ -33,6 +33,7 @@ class HttpUtil {
 
     Dio dio = createInstance();
     if (requestToken) {
+
       dio.options.headers[HttpHeaders.authorizationHeader] = GlobalUtil.token;
     }
     dio.options.method = method;

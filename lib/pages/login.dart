@@ -23,8 +23,8 @@ class LoginState extends State {
   @override
   void initState() {
     super.initState();
-    // user.userName = 'q';
-    // user.password = '1';
+//     user.userName = 'admin';
+//     user.password = 'admin';
   }
 
   @override
@@ -186,12 +186,12 @@ class LoginState extends State {
       return;
     }
     form.save();
-    UserApi.login(user.toJson()).then((ResponeBodyApi responeBodyApi) {
-      if (responeBodyApi.success) {
-        GlobalUtil.token = responeBodyApi.data;
+    UserApi.login(user.toJson()).then((ResponeBodyApi responseBodyApi) {
+      if (responseBodyApi.success) {
+        GlobalUtil.token = responseBodyApi.data;
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AppListLayout()));
       } else {
-        this.error = responeBodyApi.message;
+        this.error = responseBodyApi.message;
         BotToast.showText(text: this.error);
         setState(() {});
       }
