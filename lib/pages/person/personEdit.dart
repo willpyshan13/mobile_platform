@@ -26,7 +26,7 @@ class EditPageState extends State<EditPage> {
   void initState() {
     super.initState();
     if (widget.id != null) {
-      PersonApi.getById({'id': widget.id}).then((ResponeBodyApi res) {
+      PersonApi.getById({'id': widget.id}).then((ResponseBodyApi res) {
         formData = App.fromJson(res.data);
         setState(() {});
       });

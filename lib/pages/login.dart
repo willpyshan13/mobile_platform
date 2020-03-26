@@ -23,8 +23,8 @@ class LoginState extends State {
   @override
   void initState() {
     super.initState();
-//     user.userName = 'admin';
-//     user.password = 'admin';
+     user.userName = 'flutter';
+     user.password = 'flutter';
   }
 
   @override
@@ -186,7 +186,7 @@ class LoginState extends State {
       return;
     }
     form.save();
-    UserApi.login(user.toJson()).then((ResponeBodyApi responseBodyApi) {
+    UserApi.login(user.toJson()).then((ResponseBodyApi responseBodyApi) {
       if (responseBodyApi.success) {
         GlobalUtil.token = responseBodyApi.data;
         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AppListLayout()));

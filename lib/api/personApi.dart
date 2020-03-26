@@ -4,8 +4,8 @@ class PersonApi {
   static list(data) {
     return HttpUtil.post('/app/list', data: data);
   }
-  static page(data) {
-    return HttpUtil.post('/app/page', data: data);
+  static page(Map<String,dynamic> params) {
+    return HttpUtil.get('/app/list', params);
   }
   static getById(data) {
     return HttpUtil.post('/app/getById', data: data);

@@ -6,12 +6,12 @@ part 'page.g.dart';
 class Page {
     Page();
 
-    num total=0;
-    num size=10;
-    num current=1;
-    num pages=1;
+    int totalCount=0;
+    int pageSize=10;
+    int currPage=1;
+    int totalPage=1;
     List<OrderItem> orders = [];
-    List<Map> records;
+    List<Map> list;
     
     factory Page.fromJson(Map<String,dynamic> json) => _$PageFromJson(json);
     Map<String, dynamic> toJson() => _$PageToJson(this);

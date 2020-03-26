@@ -8,24 +8,19 @@ part of 'page.dart';
 
 Page _$PageFromJson(Map<String, dynamic> json) {
   return Page()
-    ..total = json['total'] as num
-    ..size = json['size'] as num
-    ..current = json['current'] as num
-    ..pages = json['pages'] as num
-    ..orders = (json['orders'] as List)
-        ?.map((e) =>
-            e == null ? null : OrderItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..records = (json['records'] as List)
+    ..totalCount = json['totalCount'] as int
+    ..pageSize = json['pageSize'] as int
+    ..currPage = json['currPage'] as int
+    ..totalPage = json['totalPage'] as int
+    ..list = (json['list'] as List)
         ?.map((e) => e as Map<String, dynamic>)
         ?.toList();
 }
 
 Map<String, dynamic> _$PageToJson(Page instance) => <String, dynamic>{
-      'total': instance.total,
-      'size': instance.size,
-      'current': instance.current,
-      'pages': instance.pages,
-      'orders': instance.orders,
-      'records': instance.records
+      'totalCount': instance.totalCount,
+      'pageSize': instance.pageSize,
+      'currPage': instance.currPage,
+      'totalPage': instance.totalPage,
+      'list': instance.list
     };

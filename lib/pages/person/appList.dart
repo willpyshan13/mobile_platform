@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_admin/api/personApi.dart';
 import 'package:flutter_admin/components/cryButton.dart';
 import 'package:flutter_admin/components/cryDialog.dart';
-import 'package:flutter_admin/components/form1/cryInput.dart';
 import 'package:flutter_admin/components/form1/crySelect.dart';
 import 'package:flutter_admin/data/data1.dart';
 import 'package:flutter_admin/models/index.dart';
 import 'package:flutter_admin/models/app.dart';
 import 'package:flutter_admin/models/requestBodyApi.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
-import 'package:flutter_admin/utils/dictUtil.dart';
 
 import 'personEdit.dart';
 
@@ -44,8 +42,7 @@ class Curd1State extends State {
   void initState() {
     super.initState();
     myDS.context = context;
-    myDS.page.size = rowsPerPage;
-    myDS.page.orders.add(OrderItem(column: 'update_time', asc: false));
+    myDS.page.pageSize = rowsPerPage;
     myDS.addListener(() {
       setState(() {});
     });
@@ -125,7 +122,7 @@ class Curd1State extends State {
                     width: 900,
                     context: context,
                     title: '修改',
-                    body: EditPage(id: person.appId),
+                    body: EditPage(id: person.appId.toString()),
                   ).then((v) {
                     if (v) {
                       query();
@@ -142,7 +139,7 @@ class Curd1State extends State {
                     List ids = myDS.dataList.where((v) {
                       return v.selected;
                     }).map<String>((v) {
-                      return v.appId;
+                      return v.appId.toString();
                     }).toList();
                     await PersonApi.removeByIds(ids);
                     query();
@@ -163,7 +160,7 @@ class Curd1State extends State {
             onRowsPerPageChanged: (int value) {
               setState(() {
                 rowsPerPage = value;
-                myDS.page.size = rowsPerPage;
+                myDS.page.pageSize = rowsPerPage;
                 myDS.loadData();
               });
             },
@@ -238,11 +235,11 @@ class MyDS extends DataTableSource {
   }
 
   loadData() async {
-    requestBodyApi.page = page;
-    ResponeBodyApi responseBodyApi = await PersonApi.page(requestBodyApi);
+    var params = {'page':'1','limit':'20','clientId':'2','platform':'android'};
+    ResponseBodyApi responseBodyApi = await PersonApi.page(params);
     page = Page.fromJson(responseBodyApi.data);
 
-    dataList = page.records.map<App>((v) {
+    dataList = page.list.map<App>((v) {
       App person = App.fromJson(v);
       person.selected = false;
       return person;
@@ -252,13 +249,13 @@ class MyDS extends DataTableSource {
   }
 
   onPageChanged(firstRowIndex) {
-    page.current = firstRowIndex / page.size + 1;
+    page.currPage = firstRowIndex / page.pageSize + 1;
     loadData();
   }
 
   @override
   DataRow getRow(int index) {
-    var dataIndex = index - page.size * (page.current - 1);
+    var dataIndex = index - page.pageSize * (page.currPage - 1);
 
     if (dataIndex >= dataList.length) {
       return null;
@@ -290,7 +287,7 @@ class MyDS extends DataTableSource {
                   width: 900,
                   context: context,
                   title: '修改',
-                  body: EditPage(id: person.appId),
+                  body: EditPage(id: person.appId.toString()),
                 ).then((v) {
                   if (v) {
                     loadData();
@@ -318,7 +315,7 @@ class MyDS extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => page.total;
+  int get rowCount => page.totalPage;
 
   @override
   int get selectedRowCount => selectedCount;

@@ -2,14 +2,14 @@ import 'package:json_annotation/json_annotation.dart';
 part 'responeBodyApi.g.dart';
 
 @JsonSerializable()
-class ResponeBodyApi<T> {
-    ResponeBodyApi();
+class ResponseBodyApi<T> {
+    ResponseBodyApi();
 
     bool success;
-    String code;
+    int code;
     String message;
     T data;
     
-    factory ResponeBodyApi.fromJson(Map<String,dynamic> json) => _$ResponeBodyApiFromJson(json);
-    Map<String, dynamic> toJson() => _$ResponeBodyApiToJson(this);
+    factory ResponseBodyApi.fromJson(Map<String,dynamic> json) => _$ResponseBodyApiFromJson(json);
+    Map<String, dynamic> toJson() => _$ResponseBodyApiToJson(this);
 }

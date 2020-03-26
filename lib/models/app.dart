@@ -7,14 +7,14 @@ class App {
     App();
 
     bool selected;
-    String appId;
+    int appId;
     String appName;
     String version;
     String platform;
     String channel;
     String downloadUrl;
-    String createTime;
-    String updateTime;
+    num createTime;
+    num updateTime;
     
     factory App.fromJson(Map<String,dynamic> json) => _$PersonFromJson(json);
     Map<String, dynamic> toJson() => _$PersonToJson(this);
