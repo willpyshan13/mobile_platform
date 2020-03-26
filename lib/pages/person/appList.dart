@@ -62,18 +62,18 @@ class Curd1State extends State {
         children: <Widget>[
           CrySelect(
             label: '平台',
-            value: formData.deptId,
+            value: formData.platform,
             dataList: platformList,
             onSaved: (v) {
-              formData.name = v;
+              formData.appName = v;
             },
           ),
           CrySelect(
             label: '客户端',
-            value: formData.deptId,
+            value: formData.platform,
             dataList: deptIdList,
             onSaved: (v) {
-              formData.deptId = v;
+              formData.appId = v;
             },
           ),
         ],
@@ -125,7 +125,7 @@ class Curd1State extends State {
                     width: 900,
                     context: context,
                     title: '修改',
-                    body: EditPage(id: person.id),
+                    body: EditPage(id: person.appId),
                   ).then((v) {
                     if (v) {
                       query();
@@ -142,7 +142,7 @@ class Curd1State extends State {
                     List ids = myDS.dataList.where((v) {
                       return v.selected;
                     }).map<String>((v) {
-                      return v.id;
+                      return v.appId;
                     }).toList();
                     await PersonApi.removeByIds(ids);
                     query();
@@ -171,32 +171,32 @@ class Curd1State extends State {
             onPageChanged: myDS.onPageChanged,
             columns: <DataColumn>[
               DataColumn(
-                label: const Text('姓名'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('name', ascending),
+                label: const Text('应用名'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('appName', ascending),
               ),
               DataColumn(
-                label: const Text('呢称'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('nick_name', ascending),
+                label: const Text('版本号'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('version', ascending),
               ),
               DataColumn(
-                label: const Text('性别'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('gender', ascending),
+                label: const Text('渠道'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('channel', ascending),
               ),
               DataColumn(
-                label: const Text('出生年月'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('birthday', ascending),
+                label: const Text('下载链接'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('downloadUrl', ascending),
               ),
               DataColumn(
-                label: const Text('部门'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('dept_id', ascending),
+                label: const Text('更新内容'),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('updateLog', ascending),
               ),
               DataColumn(
                 label: const Text('创建时间'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('create_time', ascending),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('createTime', ascending),
               ),
               DataColumn(
                 label: const Text('修改时间'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('update_time', ascending),
+                onSort: (int columnIndex, bool ascending) => myDS.sort('updateTime', ascending),
               ),
               DataColumn(
                 label: const Text('操作'),
@@ -274,11 +274,11 @@ class MyDS extends DataTableSource {
         notifyListeners();
       },
       cells: <DataCell>[
-        DataCell(Text(person.name ?? '--')),
-        DataCell(Text(person.nickName ?? '--')),
-        DataCell(Text(DictUtil.getDictName(person.gender, genderList))),
-        DataCell(Text(person.birthday ?? '--')),
-        DataCell(Text(DictUtil.getDictName(person.deptId, deptIdList, defaultValue: '--'))),
+        DataCell(Text(person.appName ?? '--')),
+        DataCell(Text(person.version ?? '--')),
+        DataCell(Text(person.channel?? '--')),
+        DataCell(Text(person.platform ?? '--')),
+        DataCell(Text(person.downloadUrl ?? '--')),
         DataCell(Text(person.createTime ?? '--')),
         DataCell(Text(person.updateTime ?? '--')),
         DataCell(ButtonBar(
@@ -290,7 +290,7 @@ class MyDS extends DataTableSource {
                   width: 900,
                   context: context,
                   title: '修改',
-                  body: EditPage(id: person.id),
+                  body: EditPage(id: person.appId),
                 ).then((v) {
                   if (v) {
                     loadData();
@@ -302,7 +302,7 @@ class MyDS extends DataTableSource {
               icon: Icon(Icons.delete),
               onPressed: () {
                 cryConfirm(context, '确定删除', () async {
-                  await PersonApi.removeByIds([person.id]);
+                  await PersonApi.removeByIds([person.appId]);
                   loadData();
                   Navigator.of(context).pop();
                 });

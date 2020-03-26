@@ -40,44 +40,36 @@ class EditPageState extends State<EditPage> {
       child: Wrap(
         children: <Widget>[
           CryInput(
-            value: formData.name,
-            label: '人员姓名',
+            value: formData.appName,
+            label: '应用名',
             onSaved: (v) {
-              formData.name = v;
+              formData.appName = v;
             },
             validator: (v) {
               return v.isEmpty ? '必填' : null;
             },
           ),
           CryInput(
-            value: formData.nickName,
-            label: '呢称',
+            value: formData.channel,
+            label: '渠道',
             onSaved: (v) {
-              formData.nickName = v;
+              formData.channel = v;
             },
           ),
           CrySelect(
-            label: '性别',
-            value: formData.gender,
+            label: '版本号',
+            value: formData.version,
             dataList: genderList,
             onSaved: (v) {
-              formData.gender = v;
+              formData.version = v;
             },
           ),
           CrySelectDate(
             context: context,
-            value: formData.birthday,
-            label: '出生年月',
+            value: formData.downloadUrl,
+            label: '下载链接',
             onSaved: (v) {
-              formData.birthday = v;
-            },
-          ),
-          CrySelect(
-            label: '所属部门',
-            value: formData.deptId,
-            dataList: deptIdList,
-            onSaved: (v) {
-              formData.deptId = v;
+              formData.downloadUrl = v;
             },
           ),
         ],

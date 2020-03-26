@@ -7,22 +7,12 @@ class App {
     App();
 
     bool selected;
-    String id;
-    String userId;
-    String nickName;
-    String avatarUrl;
-    String gender;
-    String country;
-    String province;
-    String city;
-    String name;
-    String school;
-    String major;
-    String birthday;
-    String entrance;
-    String hometown;
-    String memo;
-    String deptId;
+    String appId;
+    String appName;
+    String version;
+    String platform;
+    String channel;
+    String downloadUrl;
     String createTime;
     String updateTime;
     
