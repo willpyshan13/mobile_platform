@@ -169,31 +169,38 @@ class Curd1State extends State {
             columns: <DataColumn>[
               DataColumn(
                 label: const Text('应用名'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('appName', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('appName', ascending),
               ),
               DataColumn(
                 label: const Text('版本号'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('version', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('version', ascending),
               ),
               DataColumn(
                 label: const Text('渠道'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('channel', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('channel', ascending),
               ),
               DataColumn(
                 label: const Text('下载链接'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('downloadUrl', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('downloadUrl', ascending),
               ),
               DataColumn(
                 label: const Text('更新内容'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('updateLog', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('updateLog', ascending),
               ),
               DataColumn(
                 label: const Text('创建时间'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('createTime', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('downloadUrl', ascending),
               ),
               DataColumn(
                 label: const Text('修改时间'),
-                onSort: (int columnIndex, bool ascending) => myDS.sort('updateTime', ascending),
+                onSort: (int columnIndex, bool ascending) =>
+                    myDS.sort('downloadUrl', ascending),
               ),
               DataColumn(
                 label: const Text('操作'),
@@ -223,11 +230,13 @@ class Curd1State extends State {
 
 class MyDS extends DataTableSource {
   MyDS();
+
   BuildContext context;
   List<App> dataList;
   int selectedCount = 0;
   RequestBodyApi requestBodyApi = RequestBodyApi();
   Page page = Page();
+
   sort(column, ascending) {
     page.orders[0].column = column;
     page.orders[0].asc = !page.orders[0].asc;
@@ -235,7 +244,12 @@ class MyDS extends DataTableSource {
   }
 
   loadData() async {
-    var params = {'page':'1','limit':'20','clientId':'2','platform':'android'};
+    var params = {
+      'page': '1',
+      'limit': '20',
+      'clientId': '2',
+      'platform': 'android'
+    };
     ResponseBodyApi responseBodyApi = await PersonApi.page(params);
     page = Page.fromJson(responseBodyApi.data);
 
@@ -255,6 +269,9 @@ class MyDS extends DataTableSource {
 
   @override
   DataRow getRow(int index) {
+    if (dataList == null) {
+      return null;
+    }
     var dataIndex = index - page.pageSize * (page.currPage - 1);
 
     if (dataIndex >= dataList.length) {
@@ -273,11 +290,11 @@ class MyDS extends DataTableSource {
       cells: <DataCell>[
         DataCell(Text(person.appName ?? '--')),
         DataCell(Text(person.version ?? '--')),
-        DataCell(Text(person.channel?? '--')),
+        DataCell(Text(person.channel.toString() ?? '--')),
         DataCell(Text(person.platform ?? '--')),
         DataCell(Text(person.downloadUrl ?? '--')),
-        DataCell(Text(person.createTime ?? '--')),
-        DataCell(Text(person.updateTime ?? '--')),
+        DataCell(Text(person.createTime.toString() ?? '--')),
+        DataCell(Text(person.updateTime.toString() ?? '--')),
         DataCell(ButtonBar(
           children: <Widget>[
             IconButton(
