@@ -62,7 +62,7 @@ class Curd1State extends State {
             value: formData.platform,
             dataList: platformList,
             onSaved: (v) {
-              formData.appName = v;
+              myDS.client = v;
             },
           ),
           CrySelect(
@@ -70,7 +70,7 @@ class Curd1State extends State {
             value: formData.platform,
             dataList: deptIdList,
             onSaved: (v) {
-              formData.appId = v;
+              myDS.platform = v;
             },
           ),
         ],
@@ -231,6 +231,9 @@ class Curd1State extends State {
 class MyDS extends DataTableSource {
   MyDS();
 
+  var client = "2";
+  var platform = "android";
+
   BuildContext context;
   List<App> dataList;
   int selectedCount = 0;
@@ -247,8 +250,8 @@ class MyDS extends DataTableSource {
     var params = {
       'page': '1',
       'limit': '20',
-      'clientId': '2',
-      'platform': 'android'
+      'clientId': client,
+      'platform': platform
     };
     ResponseBodyApi responseBodyApi = await PersonApi.page(params);
     page = Page.fromJson(responseBodyApi.data);
@@ -291,10 +294,10 @@ class MyDS extends DataTableSource {
         DataCell(Text(person.appName ?? '--')),
         DataCell(Text(person.version ?? '--')),
         DataCell(Text(person.channel.toString() ?? '--')),
-        DataCell(Text(person.platform ?? '--')),
         DataCell(Text(person.downloadUrl ?? '--')),
-        DataCell(Text(person.createTime.toString() ?? '--')),
-        DataCell(Text(person.updateTime.toString() ?? '--')),
+        DataCell(Text(person.updateLog ?? '--')),
+        DataCell(Text(DateTime.fromMillisecondsSinceEpoch(person.createTime).toString() ?? '--')),
+        DataCell(Text(DateTime.fromMillisecondsSinceEpoch(person.createTime).toString() ?? '--')),
         DataCell(ButtonBar(
           children: <Widget>[
             IconButton(
@@ -331,9 +334,19 @@ class MyDS extends DataTableSource {
   @override
   bool get isRowCountApproximate => false;
 
-  @override
-  int get rowCount => page.totalPage;
 
   @override
   int get selectedRowCount => selectedCount;
+
+  @override
+  int get rowCount => getCount();
+
+  int getCount(){
+    if(dataList==null){
+      return 0;
+    }else{
+      return dataList.length;
+    }
+  }
+
 }

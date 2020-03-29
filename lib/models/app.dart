@@ -13,6 +13,7 @@ class App {
     String platform;
     String channel;
     String downloadUrl;
+    String updateLog;
     num createTime;
     num updateTime;
     

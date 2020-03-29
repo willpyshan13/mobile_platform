@@ -4,7 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
 
-import 'globalUtil.dart';
+import '../utils/globalUtil.dart';
 
 class HttpUtil {
   static Dio dio;

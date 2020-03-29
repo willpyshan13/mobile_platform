@@ -1,4 +1,4 @@
-import 'package:flutter_admin/utils/httpUtil.dart';
+import 'package:flutter_admin/base/httpUtil.dart';
 
 class PersonApi {
   static list(data) {

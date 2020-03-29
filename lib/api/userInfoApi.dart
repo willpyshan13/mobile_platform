@@ -1,5 +1,5 @@
 import 'package:flutter_admin/models/responeBodyApi.dart';
-import 'package:flutter_admin/utils/httpUtil.dart';
+import 'package:flutter_admin/base/httpUtil.dart';
 
 class UserInfoApi {
   static Future<ResponseBodyApi> getCurrentUserInfo() {
