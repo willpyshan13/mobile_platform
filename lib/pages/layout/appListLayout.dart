@@ -126,14 +126,7 @@ class AppListLayoutState extends State with TickerProviderStateMixin {
             },
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.settings),
-        onPressed: () {
-          scaffoldStateKey.currentState.openEndDrawer();
-        },
-      ),
-    );
+      ));
     return Theme(
       data: ThemeData(
         primaryColor: themeColor,
