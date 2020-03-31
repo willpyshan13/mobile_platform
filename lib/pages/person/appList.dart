@@ -62,7 +62,7 @@ class Curd1State extends State {
             value: formData.platform,
             dataList: platformList,
             onSaved: (v) {
-              myDS.client = v;
+              myDS.platform = v;
             },
           ),
           CrySelect(
@@ -70,7 +70,7 @@ class Curd1State extends State {
             value: formData.platform,
             dataList: deptIdList,
             onSaved: (v) {
-              myDS.platform = v;
+              myDS.client = v;
             },
           ),
         ],
