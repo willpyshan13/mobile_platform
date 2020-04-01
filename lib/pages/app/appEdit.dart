@@ -78,7 +78,7 @@ class _AppEditPageState extends State<AppEditPage> {
           ),
           CrySelect(
             label: '平台',
-            value: formData.platform,
+            value: "1",
             dataList: platformList,
             onSaved: (v) {
               formData.platform = v;
@@ -86,7 +86,7 @@ class _AppEditPageState extends State<AppEditPage> {
           ),
           CrySelect(
             label: '客户端',
-            value: formData.platform,
+            value: "1",
             dataList: deptIdList,
             onSaved: (v) {
               formData.clientId = num.parse(v);
