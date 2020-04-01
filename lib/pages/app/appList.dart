@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/api/personApi.dart';
+import 'package:flutter_admin/api/appApi.dart';
 import 'package:flutter_admin/components/cryButton.dart';
 import 'package:flutter_admin/components/cryDialog.dart';
 import 'package:flutter_admin/components/form1/crySelect.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_admin/models/app.dart';
 import 'package:flutter_admin/models/requestBodyApi.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
 
-import 'personEdit.dart';
+import 'appEdit.dart';
 
 class AppList extends StatefulWidget {
   @override
@@ -99,7 +99,7 @@ class Curd1State extends State {
               width: 900,
               context: context,
               title: '增加',
-              body: EditPage(),
+              body: AppEditPage(),
             ).then((v) {
               if (v != null) {
                 query();
@@ -122,7 +122,7 @@ class Curd1State extends State {
                     width: 900,
                     context: context,
                     title: '修改',
-                    body: EditPage(id: person.appId.toString()),
+                    body: AppEditPage(id: person.appId.toString()),
                   ).then((v) {
                     if (v) {
                       query();
@@ -141,7 +141,7 @@ class Curd1State extends State {
                     }).map<String>((v) {
                       return v.appId.toString();
                     }).toList();
-                    await PersonApi.removeByIds(ids);
+                    await AppApi.removeByIds(ids);
                     query();
                     Navigator.of(context).pop();
                   });
@@ -253,7 +253,7 @@ class MyDS extends DataTableSource {
       'clientId': client,
       'platform': platform
     };
-    ResponseBodyApi responseBodyApi = await PersonApi.page(params);
+    ResponseBodyApi responseBodyApi = await AppApi.page(params);
     page = Page.fromJson(responseBodyApi.data);
 
     dataList = page.list.map<App>((v) {
@@ -307,7 +307,7 @@ class MyDS extends DataTableSource {
                   width: 900,
                   context: context,
                   title: '修改',
-                  body: EditPage(id: person.appId.toString()),
+                  body: AppEditPage(id: person.appId.toString()),
                 ).then((v) {
                   if (v) {
                     loadData();
@@ -319,7 +319,7 @@ class MyDS extends DataTableSource {
               icon: Icon(Icons.delete),
               onPressed: () {
                 cryConfirm(context, '确定删除', () async {
-                  await PersonApi.removeByIds([person.appId]);
+                  await AppApi.removeByIds([person.appId]);
                   loadData();
                   Navigator.of(context).pop();
                 });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/pages/person/appList.dart';
+import 'package:flutter_admin/pages/app/appList.dart';
 import 'package:flutter_admin/vo/pageVO.dart';
 import 'package:flutter_admin/vo/selectOptionVO.dart';
 

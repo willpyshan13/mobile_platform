@@ -1,32 +1,31 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_admin/api/personApi.dart';
+import 'package:flutter_admin/api/appApi.dart';
 import 'package:flutter_admin/components/cryButton.dart';
 import 'package:flutter_admin/components/form1/cryInput.dart';
 import 'package:flutter_admin/components/form1/crySelect.dart';
-import 'package:flutter_admin/components/form1/crySelectDate.dart';
 import 'package:flutter_admin/data/data1.dart';
 import 'package:flutter_admin/models/app.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
 
-class EditPage extends StatefulWidget {
+class AppEditPage extends StatefulWidget {
   final String id;
-  const EditPage({Key key, this.id}) : super(key: key);
+  const AppEditPage({Key key, this.id}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return EditPageState();
+    return _AppEditPageState();
   }
 }
 
-class EditPageState extends State<EditPage> {
+class _AppEditPageState extends State<AppEditPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   App formData = App();
   @override
   void initState() {
     super.initState();
     if (widget.id != null) {
-      PersonApi.getById({'id': widget.id}).then((ResponseBodyApi res) {
+      AppApi.getById({'id': widget.id}).then((ResponseBodyApi res) {
         formData = App.fromJson(res.data);
         setState(() {});
       });
@@ -56,20 +55,41 @@ class EditPageState extends State<EditPage> {
               formData.channel = v;
             },
           ),
-          CrySelect(
+          CryInput(
             label: '版本号',
             value: formData.version,
-            dataList: genderList,
             onSaved: (v) {
               formData.version = v;
             },
           ),
-          CrySelectDate(
-            context: context,
+          CryInput(
             value: formData.downloadUrl,
             label: '下载链接',
             onSaved: (v) {
               formData.downloadUrl = v;
+            },
+          ),
+          CryInput(
+            value: formData.downloadUrl,
+            label: '更新日志',
+            onSaved: (v) {
+              formData.updateLog = v;
+            },
+          ),
+          CrySelect(
+            label: '平台',
+            value: formData.platform,
+            dataList: platformList,
+            onSaved: (v) {
+              formData.platform = v;
+            },
+          ),
+          CrySelect(
+            label: '客户端',
+            value: formData.platform,
+            dataList: deptIdList,
+            onSaved: (v) {
+              formData.clientId = v;
             },
           ),
         ],
@@ -86,7 +106,7 @@ class EditPageState extends State<EditPage> {
               return;
             }
             form.save();
-            PersonApi.saveOrUpdate(formData.toJson()).then((res) {
+            AppApi.save(formData.toJson()).then((res) {
               BotToast.showText(text: "保存成功");
               // BotToast.showSimpleNotification(title: "init");
               Navigator.pop(context, true);

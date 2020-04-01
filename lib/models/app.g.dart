@@ -14,6 +14,7 @@ App _$PersonFromJson(Map<String, dynamic> json) {
     ..version = json['version'] as String
     ..platform = json['platform'] as String
     ..channel = json['channel'] as String
+    ..clientId = json['clientId'] as String
     ..downloadUrl = json['downloadUrl'] as String
     ..updateLog = json['downloadUrl'] as String
     ..createTime = json['createTime'] as num
@@ -27,6 +28,7 @@ Map<String, dynamic> _$PersonToJson(App instance) => <String, dynamic>{
       'version': instance.version,
       'platform': instance.platform,
       'channel': instance.channel,
+      'clientId': instance.clientId,
       'downloadUrl': instance.downloadUrl,
       'updateLog': instance.updateLog,
       'createTime': instance.createTime,

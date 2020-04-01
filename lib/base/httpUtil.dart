@@ -8,9 +8,7 @@ import '../utils/globalUtil.dart';
 
 class HttpUtil {
   static Dio dio;
-
-  // static const String API_PREFIX = 'http://localhost:9094/';
-  static const String API_PREFIX = 'http://192.168.1.7:8081/renren-api/';
+  static const String API_PREFIX = 'http://localhost:8081/renren-api/';
   static const int CONNECT_TIMEOUT = 10000;
   static const int RECEIVE_TIMEOUT = 3000;
 
