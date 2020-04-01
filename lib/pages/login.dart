@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
+import 'package:flutter_admin/pages/app/appList.dart';
 import 'package:flutter_admin/pages/register.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_admin/api/userApi.dart';
@@ -189,7 +190,7 @@ class LoginState extends State {
     UserApi.login(user.toJson()).then((ResponseBodyApi responseBodyApi) {
       if (responseBodyApi.success) {
         GlobalUtil.token = responseBodyApi.data;
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AppListLayout()));
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AppList()));
       } else {
         this.error = responseBodyApi.message;
         BotToast.showText(text: this.error);
