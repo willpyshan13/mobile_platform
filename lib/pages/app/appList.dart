@@ -9,6 +9,7 @@ import 'package:flutter_admin/models/index.dart';
 import 'package:flutter_admin/models/app.dart';
 import 'package:flutter_admin/models/requestBodyApi.dart';
 import 'package:flutter_admin/models/responeBodyApi.dart';
+import 'package:flutter_admin/pages/download/downloadPage.dart';
 
 import 'appEdit.dart';
 
@@ -306,30 +307,11 @@ class MyDS extends DataTableSource {
         DataCell(ButtonBar(
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.edit),
+              icon: Icon(Icons.arrow_forward_ios),
               onPressed: () {
-                cryDialog(
-                  width: 900,
-                  context: context,
-                  title: '修改',
-                  body: AppEditPage(id: person.appId.toString()),
-                ).then((v) {
-                  if (v) {
-                    loadData();
-                  }
-                });
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DownloadPage()));
               },
-            ),
-            IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                cryConfirm(context, '确定删除', () async {
-                  await AppApi.removeByIds([person.appId]);
-                  loadData();
-                  Navigator.of(context).pop();
-                });
-              },
-            ),
+            )
           ],
         )),
       ],
