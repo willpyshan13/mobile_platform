@@ -59,7 +59,7 @@ class Curd1State extends State {
         children: <Widget>[
           CrySelect(
             label: '平台',
-            value: formData.platform,
+            value: "1",
             dataList: platformList,
             onSaved: (v) {
               myDS.platform = v;
@@ -67,7 +67,7 @@ class Curd1State extends State {
           ),
           CrySelect(
             label: '客户端',
-            value: formData.platform,
+            value: "1",
             dataList: deptIdList,
             onSaved: (v) {
               myDS.client = v;
@@ -231,7 +231,7 @@ class Curd1State extends State {
 class MyDS extends DataTableSource {
   MyDS();
 
-  var client = "2";
+  var client = "1";
   var platform = "android";
 
   BuildContext context;
@@ -249,7 +249,7 @@ class MyDS extends DataTableSource {
   loadData() async {
     var params = {
       'page': '1',
-      'limit': '20',
+      'limit': '100',
       'clientId': client,
       'platform': platform
     };
@@ -296,8 +296,12 @@ class MyDS extends DataTableSource {
         DataCell(Text(person.channel.toString() ?? '--')),
         DataCell(Text(person.downloadUrl ?? '--')),
         DataCell(Text(person.updateLog ?? '--')),
-        DataCell(Text(DateTime.fromMillisecondsSinceEpoch(person.createTime).toString() ?? '--')),
-        DataCell(Text(DateTime.fromMillisecondsSinceEpoch(person.createTime).toString() ?? '--')),
+        DataCell(Text(
+            DateTime.fromMillisecondsSinceEpoch(person.createTime).toString() ??
+                '--')),
+        DataCell(Text(
+            DateTime.fromMillisecondsSinceEpoch(person.createTime).toString() ??
+                '--')),
         DataCell(ButtonBar(
           children: <Widget>[
             IconButton(
@@ -334,19 +338,17 @@ class MyDS extends DataTableSource {
   @override
   bool get isRowCountApproximate => false;
 
-
   @override
   int get selectedRowCount => selectedCount;
 
   @override
   int get rowCount => getCount();
 
-  int getCount(){
-    if(dataList==null){
+  int getCount() {
+    if (dataList == null) {
       return 0;
-    }else{
+    } else {
       return dataList.length;
     }
   }
-
 }

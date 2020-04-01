@@ -5,10 +5,11 @@ import 'cryFormField.dart';
 
 class CrySelect extends CryFormField {
   final String label;
+
   CrySelect({
     Key key,
     this.label,
-    String value,
+    value,
     ValueChanged onChange,
     FormFieldSetter onSaved,
     List<SelectOptionVO> dataList = const [],
@@ -27,6 +28,7 @@ class CrySelect extends CryFormField {
                   child: Text(v.label),
                 );
               }).toList(),
+              hint: Text(dataList[0].label),
               onChanged: (v) {
                 value = v;
                 if (onChange != null) {

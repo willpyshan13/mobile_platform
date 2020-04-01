@@ -11,7 +11,7 @@ class App {
     String appName;
     String version;
     String platform;
-    String clientId;
+    num clientId;
     String channel;
     String downloadUrl;
     String updateLog;

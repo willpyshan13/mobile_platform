@@ -89,7 +89,7 @@ class _AppEditPageState extends State<AppEditPage> {
             value: formData.platform,
             dataList: deptIdList,
             onSaved: (v) {
-              formData.clientId = v;
+              formData.clientId = num.parse(v);
             },
           ),
         ],

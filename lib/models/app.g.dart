@@ -14,7 +14,7 @@ App _$PersonFromJson(Map<String, dynamic> json) {
     ..version = json['version'] as String
     ..platform = json['platform'] as String
     ..channel = json['channel'] as String
-    ..clientId = json['clientId'] as String
+    ..clientId = json['clientId'] as num
     ..downloadUrl = json['downloadUrl'] as String
     ..updateLog = json['downloadUrl'] as String
     ..createTime = json['createTime'] as num
