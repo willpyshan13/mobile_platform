@@ -14,6 +14,7 @@ class App {
     num clientId;
     String channel;
     String downloadUrl;
+    String token;
     String updateLog;
     num createTime;
     num updateTime;

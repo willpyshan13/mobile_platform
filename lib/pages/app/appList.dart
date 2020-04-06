@@ -309,7 +309,7 @@ class MyDS extends DataTableSource {
             IconButton(
               icon: Icon(Icons.arrow_forward_ios),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DownloadPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DownloadPage(person.token)));
               },
             )
           ],
